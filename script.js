@@ -34,10 +34,6 @@ if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 
 // Local, offline visual archive: interface studies, not verified product screenshots.
 const previewLibrary = {
-  deped: {title: 'DepEd Learning Management System', slides: [
-    ['assets/previews/deped-lms-source.png','Browseable source-based prototype exhibit',true],
-    ['assets/previews/deped-lms.png','Illustrative teacher workspace concept',false]
-  ]},
   jeepney: {title: 'Jeepney Passenger Contact Tracing', slides: [
     ['assets/previews/jeepney-tracing.png','Trip register and route overview']
   ]},
@@ -72,12 +68,11 @@ function displayPreviewSlide(index) {
   if (!currentPreview) return;
   const slides = currentPreview.slides;
   currentSlide = (index + slides.length) % slides.length;
-  const [src, label, isArchive] = slides[currentSlide];
+  const [src, label] = slides[currentSlide];
   previewImage.src = src;
-  previewImage.alt = `${currentPreview.title}: ${label} — ${isArchive ? "reconstructed from original uploaded source" : "illustrative interface study"}`;
+  previewImage.alt = `${currentPreview.title}: ${label} — illustrative interface study`;
   previewTitle.textContent = currentPreview.title;
-  previewDescription.textContent = `${label} · ${isArchive ? "reconstruction from original PHP files" : "illustrative snapshot with sample data"}`;
-  document.querySelector('.preview-disclaimer').textContent = isArchive ? 'SOURCE-BASED RECONSTRUCTION / READ-ONLY' : 'CONCEPT PREVIEW / NOT AN ACTUAL SCREENSHOT';
+  previewDescription.textContent = `${label} · illustrative snapshot with sample data`;
   previewCount.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
   previewPrevious.hidden = slides.length < 2;
   previewNext.hidden = slides.length < 2;
