@@ -8,6 +8,13 @@ records.forEach((record) => {
   });
 });
 
+function openLinkedProject() {
+  const record = records.find(item => item.id && location.hash === '#' + item.id);
+  if (record) record.open = true;
+}
+window.addEventListener('hashchange', openLinkedProject);
+openLinkedProject();
+
 const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.site-nav');
 const closeMenu = () => {
@@ -32,8 +39,18 @@ const currentYear = document.getElementById('year');
 if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 
 
-// Local, offline visual archive: interface studies, not verified product screenshots.
+// Local project screenshots and interface concepts.
 const previewLibrary = {
+  'deped-lms': {
+    title: 'DepEd Learning Management System',
+    credit: 'READ-ONLY PROTOTYPE',
+    slides: [['assets/previews/deped-lms-source.png', 'Landing page of the read-only walkthrough']]
+  },
+  'acs-project-job': {
+    title: 'AccountingSuite Project Job',
+    credit: 'PUBLIC PORTAL SCREENSHOT',
+    slides: [['assets/previews/acs-project-job.png', 'Public sign-in screen']]
+  },
   jeepney: {title: 'Jeepney Passenger Contact Tracing', slides: [
     ['assets/previews/jeepney-tracing.png','Trip register and route overview']
   ]},
@@ -70,9 +87,10 @@ function displayPreviewSlide(index) {
   currentSlide = (index + slides.length) % slides.length;
   const [src, label] = slides[currentSlide];
   previewImage.src = src;
-  previewImage.alt = `${currentPreview.title}: ${label} — illustrative interface study`;
+  previewImage.alt = `${currentPreview.title}: ${label}`;
   previewTitle.textContent = currentPreview.title;
-  previewDescription.textContent = `${label} · illustrative snapshot with sample data`;
+  previewDescription.textContent = label;
+  document.querySelector('.preview-disclaimer').textContent = currentPreview.credit ?? 'ILLUSTRATIVE INTERFACE CONCEPT';
   previewCount.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
   previewPrevious.hidden = slides.length < 2;
   previewNext.hidden = slides.length < 2;
