@@ -1,8 +1,43 @@
+// The native <details> component provides keyboard and screen-reader support.
+// We only keep one project record open at a time so the archive reads like a file index.
+const records = Array.from(document.querySelectorAll('.case-file'));
+records.forEach((record) => {
+  record.addEventListener('toggle', () => {
+    if (!record.open) return;
+    records.forEach((other) => { if (other !== record && other.open) other.open = false; });
+  });
+});
+
+const menuButton = document.querySelector('.menu-toggle');
+const menu = document.querySelector('.site-nav');
+const closeMenu = () => {
+  menu.classList.remove('is-open');
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Open menu');
+};
+menuButton.addEventListener('click', () => {
+  const isOpen = menu.classList.toggle('is-open');
+  menuButton.setAttribute('aria-expanded', String(isOpen));
+  menuButton.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+});
+menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenu();
+});
+document.addEventListener('click', (event) => {
+  if (menu.classList.contains('is-open') && !menu.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
+});
+
 const currentYear = document.getElementById('year');
 if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 
 
+// Local, offline visual archive: interface studies, not verified product screenshots.
 const previewLibrary = {
+  deped: {title: 'DepEd Learning Management System', slides: [
+    ['assets/previews/deped-lms-source.png','Browseable source-based prototype exhibit',true],
+    ['assets/previews/deped-lms.png','Illustrative teacher workspace concept',false]
+  ]},
   jeepney: {title: 'Jeepney Passenger Contact Tracing', slides: [
     ['assets/previews/jeepney-tracing.png','Trip register and route overview']
   ]},
@@ -37,11 +72,12 @@ function displayPreviewSlide(index) {
   if (!currentPreview) return;
   const slides = currentPreview.slides;
   currentSlide = (index + slides.length) % slides.length;
-  const [src, label] = slides[currentSlide];
+  const [src, label, isArchive] = slides[currentSlide];
   previewImage.src = src;
-  previewImage.alt = `${currentPreview.title}: ${label} — illustrative interface study`;
+  previewImage.alt = `${currentPreview.title}: ${label} — ${isArchive ? "reconstructed from original uploaded source" : "illustrative interface study"}`;
   previewTitle.textContent = currentPreview.title;
-  previewDescription.textContent = `${label} · illustrative snapshot with sample data`;
+  previewDescription.textContent = `${label} · ${isArchive ? "reconstruction from original PHP files" : "illustrative snapshot with sample data"}`;
+  document.querySelector('.preview-disclaimer').textContent = isArchive ? 'SOURCE-BASED RECONSTRUCTION / READ-ONLY' : 'CONCEPT PREVIEW / NOT AN ACTUAL SCREENSHOT';
   previewCount.textContent = `${String(currentSlide + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
   previewPrevious.hidden = slides.length < 2;
   previewNext.hidden = slides.length < 2;
@@ -58,11 +94,16 @@ document.querySelectorAll('[data-preview]').forEach((button) => {
     if (!project) return;
     previewOpener = button;
     currentPreview = project;
-    displayPreviewSlide(0);
-    previewDialog.showModal();
+    displayPreviewSlide(Number(button.dataset.slide || 0));
+    if (typeof previewDialog.showModal === 'function') previewDialog.showModal();
+    else previewDialog.setAttribute('open', '');
   });
 });
-const closePreview = () => previewDialog.close();
+const closePreview = () => {
+  if (typeof previewDialog.close === 'function') previewDialog.close();
+  else previewDialog.removeAttribute('open');
+  if (previewOpener) previewOpener.focus();
+};
 document.querySelector('.preview-close').addEventListener('click', closePreview);
 previewPrevious.addEventListener('click', () => displayPreviewSlide(currentSlide - 1));
 previewNext.addEventListener('click', () => displayPreviewSlide(currentSlide + 1));
@@ -71,10 +112,7 @@ previewDialog.addEventListener('keydown', (event) => {
   if (event.key === 'ArrowLeft') { event.preventDefault(); displayPreviewSlide(currentSlide - 1); }
   if (event.key === 'ArrowRight') { event.preventDefault(); displayPreviewSlide(currentSlide + 1); }
 });
-previewDialog.addEventListener('close', () => {
-  currentPreview = null;
-  previewOpener?.focus();
-});
+previewDialog.addEventListener('close', () => { currentPreview = null; });
 let touchStartX = 0;
 previewImage.addEventListener('touchstart', event => { touchStartX = event.changedTouches[0].clientX; }, {passive: true});
 previewImage.addEventListener('touchend', event => {

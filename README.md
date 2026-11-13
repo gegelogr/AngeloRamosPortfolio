@@ -1,10 +1,10 @@
-# Angelo A. Ramos | Software Delivery & IT Operations
+# Angelo A. Ramos | The Working Index
 
 A static portfolio with six projects, professional experience, and contact links. Project galleries include illustrative interfaces for the five projects alongside the DepEd LMS demo.
 
 ## Browse the LMS
 
-Select **Browse the LMS** in Selected work. The read-only demo includes the landing page, About page, sign-in and sign-up screens, and news template. Each view has a shareable link, such as `lms-explorer/index.html#about`.
+Select **Browse the LMS prototype** in the first project record. The read-only demo includes the landing page, About page, sign-in and sign-up screens, and news template. Each view has a shareable link, such as `lms-explorer/index.html#about`.
 
 The supplied PHP archive includes presentation files and images. The authentication handlers, database, and course modules are absent, so the account forms are display-only.
 
