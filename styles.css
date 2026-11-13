@@ -111,6 +111,7 @@ p,h1,h2,h3,h4{margin:0}
 .case-file[open] .case-control{background:var(--orange);border-color:var(--orange);color:white}
 .case-file[open] .case-control span{transform:rotate(45deg) translateY(-1px)}
 .case-body{display:grid;grid-template-columns:1.08fr .92fr;gap:0;border-left:1px solid var(--line);border-right:1px solid var(--line);background:var(--paper-light)}
+.case-body-text{grid-template-columns:1fr}
 .case-art{min-height:367px;position:relative;overflow:hidden;display:flex;flex-direction:column;padding:20px 24px 17px;border-right:1px solid var(--line)}
 .case-art::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.25;background-image:repeating-linear-gradient(0deg,transparent 0,transparent 23px,rgba(28,57,46,.08) 24px)}
 .art-meta,.art-footer{position:relative;z-index:2;display:flex;justify-content:space-between;font:500 9px/1.5 var(--mono);letter-spacing:.07em;color:var(--ink);gap:8px}
