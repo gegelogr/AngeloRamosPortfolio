@@ -96,6 +96,7 @@ p,h1,h2,h3,h4{margin:0}
 .hint-symbol{width:24px;height:24px;border:1px solid var(--orange);border-radius:50%;display:grid;place-items:center;color:var(--orange);font:500 17px var(--sans)}
 .archive-head{padding:13px 18px 14px;display:grid;grid-template-columns:18% 45% 25% 12%;color:#6c796f;opacity:.9;border-bottom:2px solid var(--ink)}
 .archive-head span:last-child{text-align:center}
+.archive-group{margin:0;padding:14px 18px;border-bottom:1px solid var(--line);background:#e8eae0;color:var(--ink);font:500 12px/1.4 var(--mono);letter-spacing:.055em;text-transform:uppercase}
 .case-file{border-bottom:1px solid var(--ink);position:relative}
 .case-file summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:18% 45% 25% 12%;align-items:center;padding:31px 18px 32px;min-height:148px;transition:background .2s,color .2s}
 .case-file summary::-webkit-details-marker{display:none}
