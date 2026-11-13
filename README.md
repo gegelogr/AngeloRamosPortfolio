@@ -1,6 +1,6 @@
 # Angelo A. Ramos | The Working Index
 
-A static portfolio with seven projects, professional experience, and contact links. Project galleries include five illustrative interfaces, a DepEd LMS walkthrough snapshot, and the AccountingSuite Project Job sign-in screen.
+A static portfolio with eight projects, professional experience, and contact links. Project galleries include five illustrative interfaces, the original DepEd LMS homepage, and public sign-in screens for AccountingSuite Project Job and EMBM Ticketing.
 
 ## Browse the LMS
 

@@ -43,8 +43,13 @@ if (currentYear) currentYear.textContent = String(new Date().getFullYear());
 const previewLibrary = {
   'deped-lms': {
     title: 'DepEd Learning Management System',
-    credit: 'READ-ONLY PROTOTYPE',
-    slides: [['assets/previews/deped-lms-source.png', 'Landing page of the read-only walkthrough']]
+    credit: 'ORIGINAL PROTOTYPE',
+    slides: [['assets/previews/deped-lms-original.png', 'Homepage rendered from the original PHP templates']]
+  },
+  'embm-ticketing': {
+    title: 'EMBM Ticketing System',
+    credit: 'PUBLIC PORTAL SCREENSHOT',
+    slides: [['assets/previews/embm-ticketing.png', 'Public sign-in screen']]
   },
   'acs-project-job': {
     title: 'AccountingSuite Project Job',
