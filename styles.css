@@ -60,6 +60,9 @@ p,h1,h2,h3,h4{margin:0}
 .intro-label span{font-size:17px;color:var(--orange)}
 .intro-text p{font-size:clamp(16px,1.21vw,20px);line-height:1.58;max-width:415px;letter-spacing:-.022em;color:#526259}
 .intro-text p strong{font-weight:700;color:var(--ink)}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:22px}
+.hero-actions .text-link{margin-top:0}
+.hero-actions .case-action{background:var(--ink);color:var(--paper);padding-inline:12px}
 .text-link{display:inline-flex;justify-content:space-between;min-width:225px;gap:35px;padding-bottom:9px;margin-top:28px;border-bottom:1px solid var(--ink);text-decoration:none;font:500 11px/1 var(--mono);letter-spacing:.06em;transition:color .2s}
 .text-link:hover{color:var(--orange)}
 .text-link span{font:400 18px/10px var(--sans)}
@@ -103,6 +106,7 @@ p,h1,h2,h3,h4{margin:0}
 .case-index small{font:500 9px/1.4 var(--mono);letter-spacing:.09em;color:#7d877c}
 .case-file[open] .case-index small{color:#d4ddd2}
 .case-title{font-size:clamp(29px,2.72vw,44px);line-height:1.1;font-weight:600;letter-spacing:-.048em;padding-right:12px}
+.case-teaser{display:block;margin-top:8px;font-size:clamp(13px,1.12vw,16px);line-height:1.4;font-weight:400;letter-spacing:normal}
 .case-ref{font:500 10px/2 var(--mono);letter-spacing:.025em;color:#56675d}
 .case-ref small{font-size:10px;letter-spacing:.025em}
 .case-file[open] .case-ref{color:#d7e0d2}
@@ -118,6 +122,9 @@ p,h1,h2,h3,h4{margin:0}
 .case-writeup{padding:39px clamp(28px,3.8vw,68px) 33px;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:27px}
 .case-type{font:500 10px/1.4 var(--mono);letter-spacing:.09em;color:var(--orange)}
 .case-writeup>p{font-size:clamp(18px,1.32vw,22px);line-height:1.55;letter-spacing:-.026em;max-width:530px}
+.case-study{display:grid;gap:14px;margin:0;max-width:530px}
+.case-study dt{font-weight:700;margin-bottom:3px}
+.case-study dd{margin:0;line-height:1.55}
 .case-info{border-top:1px solid #cad0c4;padding-top:16px;display:flex;gap:28px 38px;flex-wrap:wrap;width:100%}
 .case-info>div{display:flex;flex-direction:column;gap:7px}
 .case-info span{font:500 9px/1 var(--mono);letter-spacing:.1em;color:#8c958b}
